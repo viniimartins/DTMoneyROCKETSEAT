@@ -1,20 +1,20 @@
-import { useContextSelector } from 'use-context-selector'
+import { useContextSelector } from "use-context-selector";
 
-import { Header } from '../../components/Header'
-import { Summary } from '../../components/Summary'
-import { SearchForm } from './components/SearchForm'
+import { Header } from "../../components/Header";
+import { Summary } from "../../components/Summary";
+import { SearchForm } from "./components/SearchForm";
 import {
   PriceHihglight,
   TransactionsContainer,
   TransactionsTable,
-} from './style'
-import { TransactionsContext } from '../../contexts/TransactionsContext'
-import { dateFormatter, priceFormatter } from '../../utils/formatter'
+} from "./style";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { dateFormatter, priceFormatter } from "../../utils/formatter";
 
 export function Transactions() {
   const transactions = useContextSelector(TransactionsContext, (context) => {
-    return context.transactions
-  })
+    return context.transactions;
+  });
 
   return (
     <div>
@@ -31,7 +31,7 @@ export function Transactions() {
                   <td width="50%">{transaction.description}</td>
                   <td>
                     <PriceHihglight variant={transaction.type}>
-                      {transaction.type === 'outcome' && '- '}
+                      {transaction.type === "outcome" && "- "}
                       {priceFormatter.format(transaction.price)}
                     </PriceHihglight>
                   </td>
@@ -40,11 +40,11 @@ export function Transactions() {
                     {dateFormatter.format(new Date(transaction.createdAt))}
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </TransactionsTable>
       </TransactionsContainer>
     </div>
-  )
+  );
 }
